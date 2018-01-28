@@ -1,0 +1,14 @@
+.cats-list {
+  margin-top: 50px;
+}
+
+.delete-link {
+  cursor: hand;
+  cursor: pointer;
+}
+
+.empty-list {
+  width: 100%;
+  text-align: center;
+  font-size: larger;
+}

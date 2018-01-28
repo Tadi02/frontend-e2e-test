@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="col-12">
+    <h1>Here are the cats!</h1>
+  </div>
+  <div class="col-12 cats-list">
+    <table class="table" *ngIf="cats.length > 0">
+      <thead class="thead-light">
+      <th>Name</th>
+      <th>Age (year)</th>
+      <th>Weight (kgs)</th>
+      <th></th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let cat of cats">
+        <td>{{cat.name}}</td>
+        <td>{{cat.age}}</td>
+        <td>{{cat.weight}}</td>
+        <td><a class="delete-link" (click)="removeCat(cat.id)">Delete</a></td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="empty-list" *ngIf="cats.length === 0">No cats :(</div>
+  </div>
+
+  <div class="col-12">
+    <button class="btn btn-primary" (click)="openNewCatForm(newCat)">Add new cat</button>
+  </div>
+</div>
+
+<ng-template #newCat let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Add a new cat</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="newCatForm">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" formControlName="name">
+      </div>
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input type="number" class="form-control" id="age" formControlName="age">
+      </div>
+      <div class="form-group">
+        <label for="weight">Weight</label>
+        <input type="text" class="form-control" id="weight" formControlName="weight">
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cancel</button>
+    <button type="button" id="add-cat" class="btn btn-outline-dark" (click)="addCat(newCat)">Add</button>
+  </div>
+</ng-template>
